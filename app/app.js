@@ -7,8 +7,6 @@ angular.module('myApp', [
   'myApp.new-list',
   'myApp.version'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+config(['$locationProvider', function($locationProvider) {
   $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/lists'});
 }]);

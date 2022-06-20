@@ -1,14 +1,9 @@
 'use strict';
 
 angular.module('myApp.lists', ['ngRoute'])
-
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/lists', {
+  .component('todoLists', {
     templateUrl: 'lists/lists.html',
     controller: 'ListsCtrl'
-  });
-}])
+  }).controller('ListsCtrl', [function() {
 
-.controller('ListsCtrl', [function() {
-
-}]);
+  }]);
