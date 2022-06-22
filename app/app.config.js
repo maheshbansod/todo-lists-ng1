@@ -4,7 +4,12 @@ angular.module('myApp')
     let listsState = {
       name: 'lists',
       url: '/lists',
-      component: 'todoLists'
+      component: 'todoLists',
+      resolve: {
+        lists: function (ListsService) {
+            return ListsService.getLists();
+        }
+      }
     };
     let newListState = {
       name: 'newList',
