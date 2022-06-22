@@ -1,11 +1,16 @@
 
 angular.module('myApp')
-    .config(['$routeProvider', function config($routeProvider) {
-        $routeProvider.when('/lists', {
-            template: '<todo-lists></todo-lists>',
-        })
-        .when('/new-list', {
-            template: '<new-list></new-list>',
-        })
-        .otherwise('/lists')
-    }])
+.config(['$stateProvider', function($stateProvider) {
+    let listsState = {
+      name: 'lists',
+      url: '/lists',
+      component: 'todoLists'
+    };
+    let newListState = {
+      name: 'newList',
+      url: '/new-list',
+      component: 'newList'
+    };
+    $stateProvider.state(listsState);
+    $stateProvider.state(newListState);
+  }]);

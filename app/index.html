@@ -16,15 +16,17 @@
 </head>
 <body>
   <ul class="menu">
-    <li><a href="#!/lists">lists</a></li>
-    <li><a href="#!/new-list">new list</a></li>
+    <li><a ui-sref="lists" ui-sref-active="active">lists</a></li>
+    <li><a href="#!/new-list" ui-sref-active="active">new list</a></li>
   </ul>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
+  <div>
+    <ui-view></ui-view>
+  </div>
 
   <div>AngularJS seed app: v<span app-version></span></div>
 
@@ -32,7 +34,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
   <script src="app.js"></script>
   <script src="app.config.js"></script>
   <script src="lists/lists.js"></script>
