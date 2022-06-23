@@ -49,6 +49,11 @@
                     });
                     resolve(id);
                 });
+            },
+            getList: (listId) => {
+                return new Promise((resolve, _reject) => {
+                    resolve(list_data.find(list => list.id === listId));
+                })
             }
         };
 

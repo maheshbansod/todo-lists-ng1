@@ -16,6 +16,17 @@ angular.module('myApp')
       url: '/new-list',
       component: 'newList'
     };
+    let listState = {
+      name: 'lists.list',
+      url: '/{listId}',
+      component: 'todoList',
+      resolve: {
+        list: function(ListsService, $stateParams) {
+          return ListsService.getList($stateParams.listId);
+        }
+      }
+    };
     $stateProvider.state(listsState);
+    $stateProvider.state(listState);
     $stateProvider.state(newListState);
   }]);
