@@ -1,5 +1,38 @@
-<ul>
-    <li ng-repeat="list in $ctrl.lists">
-        {{list.title}}
-    </li>
-</ul>
+<div class="listsWrapper">
+    <ul class="lists">
+        <li ng-repeat="list in $ctrl.lists">
+            {{list.title}}
+        </li>
+    </ul>
+    <div class="listContent">
+        List content
+    </div>
+</div>
+
+<style>
+    .listsWrapper {
+        display: flex;
+    }
+    .lists {
+        list-style: none;
+        padding: 0;
+    }
+    .lists > li {
+        cursor: pointer;
+        padding-left: 0.5rem;
+        padding-right: 1.5rem;
+        user-select: none;
+    }
+    .lists > li:hover {
+        background-color: #eee;
+    }
+    .lists > li.active {
+        background-color: antiquewhite;
+        user-select: none;
+    }
+    .listContent {
+        padding: 0.9rem;
+        border: 0.1rem solid black;
+        margin: 0 0.5rem;
+    }
+</style>

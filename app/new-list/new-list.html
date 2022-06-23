@@ -1,2 +1,12 @@
-<input type="text" placeholder="TItle" ng-model="$ctrl.list.title" />
-<button ng-click="$ctrl.addList()">Add list</button>
+<div class="newListWrapper">
+    <input type="text" placeholder="list title" ng-model="$ctrl.list.title" />
+    <button ng-click="$ctrl.addList()">Add list</button>
+</div>
+
+<style>
+    .newListWrapper {
+        display: flex;
+        justify-content: center;
+        font-size: 2.5rem;
+    }
+</style>

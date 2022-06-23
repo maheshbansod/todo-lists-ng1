@@ -16,8 +16,8 @@
 </head>
 <body>
   <ul class="menu">
-    <li><a ui-sref="lists" ui-sref-active="active">lists</a></li>
-    <li><a ui-sref="newList" ui-sref-active="active">new list</a></li>
+    <li ui-sref="lists" ui-sref-active="active"><span>lists</span></li>
+    <li ui-sref="newList" ui-sref-active="active"><span>new list</span></li>
   </ul>
 
   <!--[if lt IE 7]>
@@ -28,7 +28,7 @@
     <ui-view></ui-view>
   </div>
 
-  <div>AngularJS seed app: v<span app-version></span></div>
+  <div class="appFooter">AngularJS seed app: v<span app-version></span></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
