@@ -57,7 +57,7 @@
                     let newItem = {
                         id,
                         title: getDefaultTaskTitle(),
-                        state: 'initial',
+                        is_done: false,
                     };
                     if(!list) {
                         // add to unlisted if no list assigned - makes me think I should've went with attribs as list of list instead.
@@ -77,7 +77,7 @@
                     list.list = list.list.filter(item => item.id !== list_item.id);
                     r(true);
                 });
-            }
+            },
         };
 
         function newId() {
