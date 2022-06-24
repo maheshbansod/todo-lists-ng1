@@ -3,15 +3,25 @@
     angular.module('myApp')
     .service('ListsService', [function () {
 
-        const MOCK_LISTS_DATA = {
-            lists: [
-                {
-                    id: "0",
-                    title: "Unlisted",
-                    list:[],
-                },
-            ]
+        const init_data = () => {
+            return {
+                lists: [
+                    {
+                        id: "0",
+                        title: "Unlisted",
+                        list:[
+                            {
+                                id: newId(),
+                                title: getDefaultTaskTitle(),
+                                is_done: false,
+                            }
+                        ],
+                    },
+                ]
+            }
         };
+
+        const LOCAL_STORAGE_DATA_KEY = 'todolist_data';
 
         const DEFAULT_TASK_TITLES = [
             "Pet your cat",
@@ -19,7 +29,7 @@
             "Buy groceries",
         ];
     
-        const list_data = [...MOCK_LISTS_DATA.lists];
+        const list_data = initListData();
 
         let service = {
             getLists: () => {
@@ -43,6 +53,7 @@
                         title: list.title,
                         list: [],
                     });
+                    quickSave();
                     resolve(id);
                 });
             },
@@ -66,15 +77,20 @@
                     } else {
                         list.list.push(newItem);
                     }
+                    quickSave();
                     resolve(newItem);
                 })
             },
             saveTask: (list_item) => {
-                return new Promise(r => r({success: true}));
+                return new Promise(r => {
+                    quickSave();
+                    r({success: true})
+                });
             },
             deleteTask: (list_item, list) => {
                 return new Promise((r)=>{
                     list.list = list.list.filter(item => item.id !== list_item.id);
+                    quickSave();
                     r(true);
                 });
             },
@@ -86,6 +102,25 @@
 
         function getDefaultTaskTitle() {
             return DEFAULT_TASK_TITLES[Math.floor(Math.random()*DEFAULT_TASK_TITLES.length)];
+        }
+        async function quickSave() {
+            saveAllToLocalStorage();
+        }
+        function saveAllToLocalStorage() {
+            localStorage.setItem(LOCAL_STORAGE_DATA_KEY,JSON.stringify(list_data));
+        }
+        function loadFromLocalStorage() {
+            let data = localStorage.getItem(LOCAL_STORAGE_DATA_KEY);
+            if(data)
+                return JSON.parse(data);
+            return null;
+        }
+        function initListData() {
+            let data = loadFromLocalStorage();
+            if(!data) {
+                data = [...init_data().lists];
+            }
+            return data;
         }
         return service;
     }]);
