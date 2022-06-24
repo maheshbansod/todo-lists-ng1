@@ -2,8 +2,9 @@
     <button type="button" ng-click="$ctrl.addNewTask()">Add a task</button>
 </div>
 <ul class="todolist">
-    <li ng-repeat="list_item in $ctrl.list.list">
-        <input type="checkbox" />
+    <li ng-repeat="list_item in $ctrl.list.list"
+        ng-class="{editing: $ctrl.editingTask === list_item}">
+        <input type="checkbox" ng-if="$ctrl.editingTask !== list_item" />
         <input
             type="text"
             class="todoListItemtext"
@@ -16,3 +17,31 @@
         <button ng-if="$ctrl.editingTask !== list_item" ng-click="$ctrl.setEdit(list_item)">edit</button>
     </li>
 </ul>
+
+<style>
+    .todolist {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .todoListItemtext:disabled {
+        border: 0;
+        background: none;
+    }
+    .todoListItemtext {
+        margin: 0.5rem;
+        margin-left: 0;
+    }
+    .todolist > li.editing {
+        padding: 0.5rem;
+        background-color: antiquewhite;
+    }
+    .edit-tools {
+        display: flex;
+    }
+    .edit-tools > * {
+        margin-right: 0.5rem;
+    }
+</style>
