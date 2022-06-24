@@ -24,6 +24,10 @@ angular.module('myApp.list', [])
         }
       })
     };
+    // hack needed to make sure it executes after the model is updated
+    this.saveTaskAsync = (list_item) => {
+      setTimeout(() => this.saveTask(list_item));
+    };
     this.deleteTask = (list_item) => {
       ListsService.deleteTask(list_item, this.list).then(_ => {
         this.editingTask = null;

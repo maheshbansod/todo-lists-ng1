@@ -4,7 +4,7 @@
 <ul class="todolist">
     <li ng-repeat="list_item in $ctrl.list.list"
         ng-class="{editing: $ctrl.editingTask === list_item}">
-        <input type="checkbox" ng-if="$ctrl.editingTask !== list_item" ng-model="list_item.is_done" />
+        <input type="checkbox" ng-if="$ctrl.editingTask !== list_item" ng-model="list_item.is_done" ng-click="$ctrl.saveTaskAsync(list_item)" />
         <input
             type="text"
             class="todoListItemtext"
