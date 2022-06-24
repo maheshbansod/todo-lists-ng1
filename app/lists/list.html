@@ -1,3 +1,18 @@
 <div>
-    {{$ctrl.list}}
+    <button type="button" ng-click="$ctrl.addNewTask()">Add a task</button>
 </div>
+<ul class="todolist">
+    <li ng-repeat="list_item in $ctrl.list.list">
+        <input type="checkbox" />
+        <input
+            type="text"
+            class="todoListItemtext"
+            ng-disabled="$ctrl.editingTask !== list_item"
+            ng-model="list_item.title" />
+        <div class="edit-tools" ng-if="$ctrl.editingTask === list_item">
+            <button type="button" ng-click="$ctrl.saveTask(list_item)">Save</button>
+            <button type="button" ng-click="$ctrl.deleteTask(list_item)">Delete</button>
+        </div>
+        <button ng-if="$ctrl.editingTask !== list_item" ng-click="$ctrl.setEdit(list_item)">edit</button>
+    </li>
+</ul>
