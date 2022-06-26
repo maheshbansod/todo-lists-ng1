@@ -12,6 +12,9 @@
         ng-click="$ctrl.setItemFilter('done')"
         ng-class="{'active':$ctrl.currentFilter === 'done'}" >✓ Done</button>
 </div>
+<div ng-if="$ctrl.list.list.length === 0">
+    Add a task to see it here
+</div>
 <ul class="todolist">
     <li ng-repeat="list_item in $ctrl.list.list | filter:$ctrl.filter"
         ng-class="{editing: $ctrl.editingTask === list_item}">
