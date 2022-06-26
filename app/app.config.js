@@ -29,4 +29,5 @@ angular.module('myApp')
     $stateProvider.state(listsState);
     $stateProvider.state(listState);
     $stateProvider.state(newListState);
+    $stateProvider.state('default', {...listsState, url:''});
   }]);
