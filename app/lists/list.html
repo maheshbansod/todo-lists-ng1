@@ -1,8 +1,19 @@
 <div>
     <button type="button" ng-click="$ctrl.addNewTask()">Add a task</button>
 </div>
+<div class="listItemfilters">
+    <button type="button"
+        ng-click="$ctrl.setItemFilter('all')"
+        ng-class="{'active':$ctrl.currentFilter === 'all'}" >All</button>
+    <button type="button"
+        ng-click="$ctrl.setItemFilter('initial')"
+        ng-class="{'active':$ctrl.currentFilter === 'initial'}" >✘ Not done</button>
+    <button type="button"
+        ng-click="$ctrl.setItemFilter('done')"
+        ng-class="{'active':$ctrl.currentFilter === 'done'}" >✓ Done</button>
+</div>
 <ul class="todolist">
-    <li ng-repeat="list_item in $ctrl.list.list"
+    <li ng-repeat="list_item in $ctrl.list.list | filter:$ctrl.filter"
         ng-class="{editing: $ctrl.editingTask === list_item}">
         <input type="checkbox" ng-if="$ctrl.editingTask !== list_item" ng-model="list_item.is_done" ng-click="$ctrl.saveTaskAsync(list_item)" />
         <input
@@ -43,5 +54,15 @@
     }
     .edit-tools > * {
         margin-right: 0.5rem;
+    }
+    .listItemfilters {
+        margin-top: 1rem;
+    }
+    .listItemfilters > button {
+        background-color: azure;
+        border: 1px solid black;
+    }
+    .listItemfilters > button.active {
+        background-color: antiquewhite;
     }
 </style>
